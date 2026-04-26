@@ -28,23 +28,27 @@ public class MenuListServlet extends HttpServlet {
         response.setContentType("text/plain;charset=UTF-8");
         PrintWriter out = response.getWriter();
 
-        // 获取Query Parameter: name
         String nameParam = request.getParameter("name");
         List<MenuItem> filteredMenu;
 
-        // 修复：空搜索 / 空白搜索 也返回全部菜单
+        // 1. 如果有搜索关键词，过滤
         if (nameParam != null && !nameParam.trim().isEmpty()) {
             filteredMenu = menu.stream()
                     .filter(item -> item.getName().toLowerCase().contains(nameParam.trim().toLowerCase()))
                     .collect(Collectors.toList());
         } else {
+            // 2. 没有关键词，返回全部
             filteredMenu = menu;
         }
 
-        // 输出菜单
-        out.println("Menu List:");
-        for (int i = 0; i < filteredMenu.size(); i++) {
-            out.println((i + 1) + ". " + filteredMenu.get(i));
+        // 3. 【关键！】如果过滤后为空，返回提示（测试需要！）
+        if (filteredMenu.isEmpty()) {
+            out.println("No menu items found");
+        } else {
+            out.println("Menu List:");
+            for (int i = 0; i < filteredMenu.size(); i++) {
+                out.println((i + 1) + ". " + filteredMenu.get(i));
+            }
         }
     }
 }
