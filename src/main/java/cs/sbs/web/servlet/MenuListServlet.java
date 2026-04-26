@@ -32,10 +32,10 @@ public class MenuListServlet extends HttpServlet {
         String nameParam = request.getParameter("name");
         List<MenuItem> filteredMenu;
 
-        if (nameParam != null && !nameParam.isBlank()) {
-            // 按菜名模糊搜索
+        // 修复：空搜索 / 空白搜索 也返回全部菜单
+        if (nameParam != null && !nameParam.trim().isEmpty()) {
             filteredMenu = menu.stream()
-                    .filter(item -> item.getName().toLowerCase().contains(nameParam.toLowerCase()))
+                    .filter(item -> item.getName().toLowerCase().contains(nameParam.trim().toLowerCase()))
                     .collect(Collectors.toList());
         } else {
             filteredMenu = menu;
