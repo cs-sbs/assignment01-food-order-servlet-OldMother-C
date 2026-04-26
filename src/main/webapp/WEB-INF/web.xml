@@ -10,32 +10,4 @@
         <welcome-file>order.html</welcome-file>
     </welcome-file-list>
 
-    <servlet>
-        <servlet-name>MenuListServlet</servlet-name>
-        <servlet-class>cs.sbs.web.servlet.MenuListServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>MenuListServlet</servlet-name>
-        <url-pattern>/menu</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>OrderCreateServlet</servlet-name>
-        <servlet-class>cs.sbs.web.servlet.OrderCreateServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>OrderCreateServlet</servlet-name>
-        <url-pattern>/order</url-pattern>
-    </servlet-mapping>
-
-    <servlet>
-        <servlet-name>OrderDetailServlet</servlet-name>
-        <servlet-class>cs.sbs.web.servlet.OrderDetailServlet</servlet-class>
-    </servlet>
-    <servlet-mapping>
-        <servlet-name>OrderDetailServlet</servlet-name>
-        <url-pattern>/order/*</url-pattern>
-    </servlet-mapping>
-
-
 </web-app>
